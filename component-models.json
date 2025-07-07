@@ -5115,5 +5115,48 @@
         "valueType": "string"
       }
     ]
+  },
+  {
+    "id": "feature-strip",
+    "fields": [
+      {
+        "component": "select",
+        "name": "variation",
+        "label": "Variation",
+        "options": [
+          { "name": "Strip", "value": "strip" },
+          { "name": "Grid", "value": "grid" }
+        ],
+        "value": "strip"
+      },
+      {
+        "component": "array",
+        "name": "features",
+        "label": "Features",
+        "fields": [
+          {
+            "component": "reference",
+            "name": "icon",
+            "label": "Icon/Image",
+            "multi": false
+          },
+          {
+            "component": "text",
+            "name": "label",
+            "label": "Label"
+          },
+          {
+            "component": "text",
+            "name": "link",
+            "label": "Link (optional)"
+          },
+          {
+            "component": "boolean",
+            "name": "highlight",
+            "label": "Highlight (optional)"
+          }
+        ]
+      }
+    ]
   }
 ]
