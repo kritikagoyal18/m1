@@ -156,6 +156,81 @@
     ]
   },
   {
+    "id": "cf-carousel",
+    "fields": [
+      {
+        "component": "text",
+        "name": "reference",
+        "value": "",
+        "label": "Content Fragment Folder Path",
+        "valueType": "string"
+      },
+      {
+        "component": "container",
+        "label": "More Options",
+        "name": "container",
+        "valueType": "string",
+        "collapsible": true,
+        "fields": [
+          {
+            "component": "select",
+            "label": "Slides Visible at Once",
+            "name": "slidesToShow",
+            "value": 3,
+            "valueType": "number",
+            "options": [
+              { "name": "1", "value": 1 },
+              { "name": "2", "value": 2 },
+              { "name": "3", "value": 3 },
+              { "name": "4", "value": 4 },
+              { "name": "5", "value": 5 }
+            ]
+          },
+          {
+            "component": "radio-group",
+            "label": "Card Layout",
+            "name": "layout",
+            "value": "verticle",
+            "valueType": "string",
+            "options": [
+              { "name": "Verticle", "value": "verticle" },
+              { "name": "Horizontal", "value": "horizontal" }
+            ]
+          },
+          {
+            "component": "radio-group",
+            "label": "Arrow Buttons",
+            "name": "arrowNavigation",
+            "value": true,
+            "valueType": "boolean",
+            "options": [
+              { "name": "Enable", "value": true },
+              { "name": "Disabled", "value": false }
+            ]
+          },
+          {
+            "component": "radio-group",
+            "label": "Auto Rotate",
+            "name": "autoRotate",
+            "value": true,
+            "valueType": "string",
+            "options": [
+              { "name": "Enable", "value": true },
+              { "name": "Disabled", "value": false }
+            ]
+          },
+          {
+            "component": "text",
+            "name": "customStyle",
+            "value": "",
+            "label": "Custom class selector",
+            "valueType": "string"
+          }
+        ]
+      }
+    ]
+  },
+  {
     "id": "embed-adaptive-form",
     "fields": [
       {
