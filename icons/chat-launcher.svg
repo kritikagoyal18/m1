@@ -1,0 +1,18 @@
+<svg width="80" height="80" viewBox="0 0 80 80" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="chatGradient" x1="0" y1="0" x2="80" y2="80" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#FFD600"/>
+      <stop offset="1" stop-color="#FFA000"/>
+    </linearGradient>
+  </defs>
+  <!-- Back bubble -->
+  <ellipse cx="34" cy="38" rx="22" ry="20" fill="url(#chatGradient)" opacity="0.7"/>
+  <!-- Front bubble -->
+  <ellipse cx="46" cy="44" rx="24" ry="22" fill="url(#chatGradient)"/>
+  <!-- Tail for front bubble -->
+  <path d="M58 62 Q54 58 46 66 Q50 60 46 60" fill="url(#chatGradient)"/>
+  <!-- Dots -->
+  <circle cx="38" cy="44" r="3" fill="white"/>
+  <circle cx="46" cy="44" r="3" fill="white"/>
+  <circle cx="54" cy="44" r="3" fill="white"/>
+</svg>

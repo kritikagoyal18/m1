@@ -5,7 +5,7 @@ export default function decorate(block) {
 
   // Create the image
   const img = document.createElement('img');
-  img.src = '/icons/chat-launcher.png';
+  img.src = '/icons/chat-launcher.svg';
   img.alt = 'Chat Launcher';
   img.className = 'chat-launcher-icon';
 
