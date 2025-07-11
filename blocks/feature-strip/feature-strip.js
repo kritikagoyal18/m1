@@ -1,13 +1,21 @@
 export default function decorate(block) {
+  // Always add base class
   block.classList.add('feature-strip');
 
-  // Detect variant from block class
+  // Detect variant from block class or data (default to 'strip')
   let variation = 'strip';
   if (block.classList.contains('feature-strip--grid')) {
     variation = 'grid';
   } else if (block.classList.contains('feature-strip--strip')) {
     variation = 'strip';
+  } else if (block.dataset && block.dataset.variation) {
+    variation = block.dataset.variation;
   }
+
+  // Remove any existing variant class
+  block.classList.remove('feature-strip--grid', 'feature-strip--strip');
+  // Add the correct variant class
+  block.classList.add(`feature-strip--${variation}`);
 
   // Clear block content
   const rows = [...block.children];
