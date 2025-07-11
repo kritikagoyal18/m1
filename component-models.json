@@ -5131,18 +5131,18 @@
       },
       {
         "component": "container",
-        "name": "gridEntries",
-        "label": "Grid Entries",
+        "name": "entries",
+        "label": "Entries",
         "fields": [
-          { "component": "reference", "name": "gridIcon1", "label": "Icon 1" },
-          { "component": "text", "name": "gridText1", "label": "Text 1" },
-          { "component": "text", "name": "gridLink1", "label": "Link 1" },
-          { "component": "reference", "name": "gridIcon2", "label": "Icon 2" },
-          { "component": "text", "name": "gridText2", "label": "Text 2" },
-          { "component": "text", "name": "gridLink2", "label": "Link 2" },
-          { "component": "reference", "name": "gridIcon3", "label": "Icon 3" },
-          { "component": "text", "name": "gridText3", "label": "Text 3" },
-          { "component": "text", "name": "gridLink3", "label": "Link 3" }
+          { "component": "reference", "name": "icon1", "label": "Icon 1" },
+          { "component": "text", "name": "text1", "label": "Text 1" },
+          { "component": "text", "name": "link1", "label": "Link 1" },
+          { "component": "reference", "name": "icon2", "label": "Icon 2" },
+          { "component": "text", "name": "text2", "label": "Text 2" },
+          { "component": "text", "name": "link2", "label": "Link 2" },
+          { "component": "reference", "name": "icon3", "label": "Icon 3" },
+          { "component": "text", "name": "text3", "label": "Text 3" },
+          { "component": "text", "name": "link3", "label": "Link 3" }
         ]
       }
     ]

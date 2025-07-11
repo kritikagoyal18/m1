@@ -1,29 +1,39 @@
-export default function decorate(block, { variation = 'strip', features = [] } = {}) {
+export default function decorate(block) {
+  console.log('Decorating feature-strip block');
   // Support Universal Editor property injection
+  let variation = 'strip';
+  let props = {};
   if (block.dataset && block.dataset.ueProps) {
     try {
-      const ueProps = JSON.parse(block.dataset.ueProps);
-      variation = ueProps.variation || variation;
-      features = ueProps.features || features;
+      props = JSON.parse(block.dataset.ueProps);
+      variation = props.variation || variation;
+      console.log('variation', variation);
     } catch (e) {
       // Ignore parse errors, fallback to defaults
     }
   }
 
   block.classList.add('feature-strip', `feature-strip--${variation}`);
-
-  // Clear block content
   block.innerHTML = '';
+
+  // Build features array (same field names for both variants)
+  let features = [];
+  for (let i = 1; i <= 3; i++) {
+    features.push({
+      icon: props[`icon${i}`] || '',
+      label: props[`text${i}`] || '',
+      link: props[`link${i}`] || ''
+    });
+  }
 
   // Create container for features
   const container = document.createElement('div');
   container.className = 'feature-strip__features';
 
   features.forEach((feature) => {
-    const { icon, label, link, highlight } = feature;
+    const { icon, label, link } = feature;
     const item = document.createElement('div');
     item.className = 'feature-strip__item';
-    if (highlight) item.classList.add('feature-strip__item--highlight');
 
     // SVG icon
     if (icon) {
@@ -34,11 +44,11 @@ export default function decorate(block, { variation = 'strip', features = [] } =
       item.appendChild(iconEl);
     }
 
-    // Label (optionally wrapped in link)
+    // Label (optionally wrapped in link for grid variant)
     let labelEl = document.createElement('span');
     labelEl.className = 'feature-strip__label';
     labelEl.textContent = label || '';
-    if (link) {
+    if (variation === 'grid' && link) {
       const linkEl = document.createElement('a');
       linkEl.href = link;
       linkEl.appendChild(labelEl);
