@@ -40,7 +40,6 @@ export default function decorate(block) {
 
   // Get configuration from block attributes or sequential divs.
   const cfFolderPath = getBlockPropValue(block, 'reference', 0);
-  console.log('cfFolderPath', cfFolderPath);
   const slidesToShowVal = getBlockPropValue(block, 'slidesToShow', 1);
   const layout = getBlockPropValue(block, 'layout', 2) || 'verticle';
   const arrowNavigationVal = getBlockPropValue(block, 'arrowNavigation', 3);
@@ -160,13 +159,6 @@ export default function decorate(block) {
     }
   });
 
-  function setCarouselWidth() {
-    const cardMaxWidth = 320;
-    const slidesToShowNow = getResponsiveSlidesToShow();
-    block.style.maxWidth = `${cardMaxWidth * slidesToShowNow + (slidesToShowNow - 1) * 20 + 10}px`;
-    // block.parentElement.querySelector('.cf-carousel-arrows').style.width = `${cardMaxWidth * slidesToShowNow + (slidesToShowNow - 1) * 20 + 10}px`;
-  }
-
   function renderCarousel(itemsToRender) {
     block.replaceChildren();
     currentSlidesToShow = getResponsiveSlidesToShow();
@@ -178,7 +170,6 @@ export default function decorate(block) {
     const totalSlides = itemsToRender.length;
     totalPages = Math.ceil(totalSlides / currentSlidesToShow);
     updatePagination(0);
-    setCarouselWidth();
   }
 
   (async () => {

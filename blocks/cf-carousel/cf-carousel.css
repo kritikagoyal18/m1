@@ -152,21 +152,14 @@ main .cf-carousel-wrapper > .cf-carousel-arrow,
 
 /* Carousel Card Styles */
 .cf-carousel-card {
-  * {
-    box-sizing: border-box;
-  }
-  background: #fff;
-  border-radius: 18px;
-  border: 1px solid #e5e5e5;
-  box-shadow: 0 0 7px rgba(0,0,0,0.10);
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  overflow: hidden;
-  min-width: 260px;
-  max-width: 320px;
-  height: 100%;
-  transition: box-shadow 0.2s;
+  width: 100%;
+  max-width: none;
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  background: transparent;
+  border: none;
+  box-shadow: none;
 }
 
 .cf-carousel-card-image {
@@ -183,10 +176,8 @@ main .cf-carousel-wrapper > .cf-carousel-arrow,
 
 .cf-carousel-card-image img {
   width: 100%;
-  height: 100%;
-  object-fit: cover;
-  border-top-left-radius: 18px;
-  border-top-right-radius: 18px;
+  height: auto;
+  display: block;
 }
 
 .cf-carousel-card-body {
