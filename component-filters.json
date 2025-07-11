@@ -2,7 +2,8 @@
   {
     "id": "main",
     "components": [
-      "section"
+      "section",
+      "chat-launcher"
     ]
   },
   {
@@ -20,8 +21,7 @@
       "form",
       "embed-adaptive-form",
       "button-modal",
-      "feature-strip",
-      "chat-launcher"
+      "feature-strip"
     ]
   },
   {
