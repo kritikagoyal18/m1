@@ -1,60 +1,56 @@
 export default function decorate(block) {
-  console.log('Decorating feature-strip block');
-  // Support Universal Editor property injection
+  // Add base class
+  block.classList.add('feature-strip');
+
+  // Detect variant from block class (e.g., feature-strip--grid or feature-strip--strip)
   let variation = 'strip';
-  let props = {};
-  if (block.dataset && block.dataset.ueProps) {
-    try {
-      props = JSON.parse(block.dataset.ueProps);
-      variation = props.variation || variation;
-      console.log('variation', variation);
-    } catch (e) {
-      // Ignore parse errors, fallback to defaults
-    }
+  if (block.classList.contains('feature-strip--grid')) {
+    variation = 'grid';
+  } else if (block.classList.contains('feature-strip--strip')) {
+    variation = 'strip';
   }
 
-  block.classList.add('feature-strip', `feature-strip--${variation}`);
+  // Clear block content
+  const rows = [...block.children];
   block.innerHTML = '';
-
-  // Build features array (same field names for both variants)
-  let features = [];
-  for (let i = 1; i <= 3; i++) {
-    features.push({
-      icon: props[`icon${i}`] || '',
-      label: props[`text${i}`] || '',
-      link: props[`link${i}`] || ''
-    });
-  }
 
   // Create container for features
   const container = document.createElement('div');
   container.className = 'feature-strip__features';
 
-  features.forEach((feature) => {
-    const { icon, label, link } = feature;
+  rows.forEach((row) => {
     const item = document.createElement('div');
     item.className = 'feature-strip__item';
 
-    // SVG icon
-    if (icon) {
-      const iconEl = document.createElement('img');
-      iconEl.className = 'feature-strip__icon';
-      iconEl.src = icon;
-      iconEl.alt = label || '';
-      item.appendChild(iconEl);
+    // Find icon (img or picture)
+    const iconEl = row.querySelector('img, picture');
+    if (iconEl) {
+      const iconClone = iconEl.cloneNode(true);
+      if (iconClone.tagName === 'IMG') {
+        iconClone.className = 'feature-strip__icon';
+      } else {
+        // If picture, add class to all contained imgs
+        iconClone.querySelectorAll('img').forEach(img => img.classList.add('feature-strip__icon'));
+      }
+      item.appendChild(iconClone);
     }
 
-    // Label (optionally wrapped in link for grid variant)
-    let labelEl = document.createElement('span');
-    labelEl.className = 'feature-strip__label';
-    labelEl.textContent = label || '';
-    if (variation === 'grid' && link) {
-      const linkEl = document.createElement('a');
-      linkEl.href = link;
-      linkEl.appendChild(labelEl);
-      labelEl = linkEl;
+    // Find label and link
+    let labelEl = row.querySelector('a, span, p');
+    if (labelEl) {
+      labelEl = labelEl.cloneNode(true);
+      labelEl.classList.add('feature-strip__label');
+      item.appendChild(labelEl);
+    } else {
+      // fallback: use text content
+      const text = row.textContent.trim();
+      if (text) {
+        const span = document.createElement('span');
+        span.className = 'feature-strip__label';
+        span.textContent = text;
+        item.appendChild(span);
+      }
     }
-    item.appendChild(labelEl);
 
     container.appendChild(item);
   });
