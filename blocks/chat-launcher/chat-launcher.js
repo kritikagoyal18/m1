@@ -1,3 +1,9 @@
+import React from 'react';
+import { Rnd } from 'react-rnd';
+import styled from 'styled-components';
+import isMobile from 'is-mobile';
+import PropTypes from 'prop-types';
+
 export default function decorate(block) {
   // Create the launcher container
   const launcher = document.createElement('div');
