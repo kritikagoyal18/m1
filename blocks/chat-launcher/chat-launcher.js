@@ -25,6 +25,8 @@ export default function decorate(block) {
   bubble.style.alignItems = 'center';
   bubble.style.justifyContent = 'center';
   bubble.style.background = 'transparent';
+  bubble.style.pointerEvents = 'auto';
+  bubble.style.zIndex = '2147483647'; // max z-index
 
   // Add the SVG image
   const img = document.createElement('img');
