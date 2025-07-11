@@ -18,7 +18,9 @@
       "columns",
       "fragment",
       "form",
-      "embed-adaptive-form"
+      "embed-adaptive-form",
+      "button-modal",
+      "feature-strip"
     ]
   },
   {
