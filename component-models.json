@@ -5146,5 +5146,9 @@
         ]
       }
     ]
+  },
+  {
+    "id": "chat-launcher",
+    "fields": []
   }
 ]
