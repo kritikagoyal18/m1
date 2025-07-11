@@ -98,7 +98,24 @@ footer .footer[data-block-status="loaded"] {
   visibility: visible;
 }
 
-h1,
+h1 {
+  font-family: 'Roboto', Arial, Helvetica, sans-serif;
+  font-weight: 700;
+  font-size: 2.5rem;         /* Adjust for your design, or use clamp() for responsiveness */
+  color: #222;               /* Or #000 if you want true black */
+  line-height: 1.15;
+  margin-top: 32px;
+  margin-bottom: 24px;
+  letter-spacing: normal;
+}
+@media (max-width: 600px) {
+  h1 {
+    font-size: 2rem;
+    margin-top: 24px;
+    margin-bottom: 16px;
+  }
+}
+
 h2,
 h3,
 h4,
@@ -112,7 +129,6 @@ h6 {
   scroll-margin: 40px;
 }
 
-h1 { font-size: var(--heading-font-size-xxl); }
 h2 { font-size: var(--heading-font-size-xl); }
 h3 { font-size: var(--heading-font-size-l); }
 h4 { font-size: var(--heading-font-size-m); }
