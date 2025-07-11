@@ -3,11 +3,11 @@
 // It explicitly imports react, react-rnd, styled-components, is-mobile, and prop-types for benchmarking purposes.
 // These imports are not used in the code, but ensure the libraries are loaded for performance analysis.
 
-import React from 'react';
-import { Rnd } from 'react-rnd';
-import styled from 'styled-components';
-import isMobile from 'is-mobile';
-import PropTypes from 'prop-types';
+// import React from 'react';
+// import { Rnd } from 'react-rnd';
+// import styled from 'styled-components';
+// import isMobile from 'is-mobile';
+// import PropTypes from 'prop-types';
 import { decorateIcons } from '../../scripts/aem.js';
 
 export default function decorate(block) {
