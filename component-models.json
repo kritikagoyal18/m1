@@ -5130,31 +5130,19 @@
         "value": "strip"
       },
       {
-        "component": "array",
-        "name": "features",
-        "label": "Features",
+        "component": "container",
+        "name": "gridEntries",
+        "label": "Grid Entries",
         "fields": [
-          {
-            "component": "reference",
-            "name": "icon",
-            "label": "Icon/Image",
-            "multi": false
-          },
-          {
-            "component": "text",
-            "name": "label",
-            "label": "Label"
-          },
-          {
-            "component": "text",
-            "name": "link",
-            "label": "Link (optional)"
-          },
-          {
-            "component": "boolean",
-            "name": "highlight",
-            "label": "Highlight (optional)"
-          }
+          { "component": "reference", "name": "gridIcon1", "label": "Icon 1" },
+          { "component": "text", "name": "gridText1", "label": "Text 1" },
+          { "component": "text", "name": "gridLink1", "label": "Link 1" },
+          { "component": "reference", "name": "gridIcon2", "label": "Icon 2" },
+          { "component": "text", "name": "gridText2", "label": "Text 2" },
+          { "component": "text", "name": "gridLink2", "label": "Link 2" },
+          { "component": "reference", "name": "gridIcon3", "label": "Icon 3" },
+          { "component": "text", "name": "gridText3", "label": "Text 3" },
+          { "component": "text", "name": "gridLink3", "label": "Link 3" }
         ]
       }
     ]
