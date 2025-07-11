@@ -53,6 +53,14 @@
   src: local('Arial');
 }
 
+@font-face {
+  font-family: 'Core Sans DS65 Heavy';
+  src: url('/fonts/CoreSansDS65Heavy.woff2') format('woff2');
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
 @media (width >= 900px) {
   :root {
     /* body sizes */
@@ -99,20 +107,22 @@ footer .footer[data-block-status="loaded"] {
 }
 
 h1 {
-  font-family: 'Roboto', Arial, Helvetica, sans-serif;
+  font-family: 'Core Sans DS65 Heavy', Arial, Helvetica, sans-serif;
   font-weight: 700;
-  font-size: 2.5rem;         /* Adjust for your design, or use clamp() for responsiveness */
-  color: #222;               /* Or #000 if you want true black */
+  font-size: 2.5rem;
+  color: #222;
   line-height: 1.15;
   margin-top: 32px;
   margin-bottom: 24px;
   letter-spacing: normal;
+  text-align: center;
 }
 @media (max-width: 600px) {
   h1 {
     font-size: 2rem;
     margin-top: 24px;
     margin-bottom: 16px;
+    text-align: center;
   }
 }
 
