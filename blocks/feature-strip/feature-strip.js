@@ -19,6 +19,9 @@ export default function decorate(block) {
   container.className = 'feature-strip__features';
 
   rows.forEach((row) => {
+    // Skip if the row's text content matches the variant name
+    if (row.getAttribute && row.getAttribute('data-aue-prop') === 'variation') return;
+
     const item = document.createElement('div');
     item.className = 'feature-strip__item';
 
