@@ -8,58 +8,6 @@ export function updateButtons(activeSlide) {
   button.classList.add('selected');
 }
 
-function delay(ms) {
-  return new Promise(resolve => setTimeout(resolve, ms));
-}
-
-function filterItemsByLocation(items, locations) {
-  if (!Array.isArray(locations)) locations = [locations];
-  return items.filter(item =>
-    Array.isArray(item.locationTag) &&
-    item.locationTag.some(tag => {
-      const parts = tag.split(':');
-      const tagLocation = parts[1]?.trim().toLowerCase();
-      return locations.some(loc => tagLocation === loc.toLowerCase());
-    })
-  );
-}
-
-function sortItemsByLastModified(items) {
-  return items.sort((a, b) => {
-    const getLastModified = (item) => {
-      const metaArr = item._metadata?.calendarMetadata || [];
-      const lastMod = metaArr.find(m => m.name === 'cq:lastModified');
-      return lastMod ? Date.parse(lastMod.value) : 0;
-    };
-    return getLastModified(b) - getLastModified(a);
-  });
-}
-
-async function loadContentFragments(cfQueryPath) {
-  const { hostname } = window.location;
-  // Use relative path for AEM author or publish domains
-  const isAemCloud = hostname.includes('author-p140426-e1433687.adobeaemcloud.com') ||
-                     hostname.includes('publish-p140426-e1433687.adobeaemcloud.com');
-  // Use publish domain for preview/live... not strict for now.
-  const isPreviewOrLive = hostname.includes('main--srilanka-airlines--prafful-s.aem.page') ||
-                          hostname.includes('main--srilanka-airlines--prafful-s.aem.live');
-  const apiBase = isAemCloud
-    ? ''
-    : 'https://publish-p140426-e1433687.adobeaemcloud.com';
-  const apiUrl = `${apiBase}/graphql/execute.json/srilanka-airlines/${cfQueryPath}`;
-  const cfFolder = await fetch(apiUrl);
-  const cfFolderData = await cfFolder.json();
-  const cfItems = Object.values(cfFolderData?.data)?.[0]?.items;
-  return cfItems;
-}
-
-async function userLocation() {
-  await delay(200);
-  return {
-    location: ['Delhi', 'Bangalore', 'Chennai']
-  };
-}
-
 // Helper to get attribute value by prop name, supporting both author and publish environments
 function getBlockPropValue(block, propName, order) {
   const attrDiv = block.querySelector(`[data-aue-prop="${propName}"]`);
@@ -71,12 +19,18 @@ function getBlockPropValue(block, propName, order) {
   return '';
 }
 
-function getCurrentUser() {
-  try {
-    return JSON.parse(localStorage.getItem('mockUserSession'));
-  } catch {
-    return null;
-  }
+async function loadContentFragments(cfQueryPath) {
+  const { hostname } = window.location;
+  const isAemCloud = hostname.includes('author-p160056-e1711628.adobeaemcloud.com') ||
+                     hostname.includes('publish-p160056-e1711628.adobeaemcloud.com');
+  const apiBase = isAemCloud
+    ? ''
+    : 'https://publish-p160056-e1711628.adobeaemcloud.com';
+  const apiUrl = `${apiBase}/graphql/execute.json/m1/${cfQueryPath}`;
+  const cfFolder = await fetch(apiUrl);
+  const cfFolderData = await cfFolder.json();
+  const cfItems = Object.values(cfFolderData?.data)?.[0]?.items;
+  return cfItems;
 }
 
 export default function decorate(block) {
@@ -86,6 +40,7 @@ export default function decorate(block) {
 
   // Get configuration from block attributes or sequential divs.
   const cfFolderPath = getBlockPropValue(block, 'reference', 0);
+  console.log('cfFolderPath', cfFolderPath);
   const slidesToShowVal = getBlockPropValue(block, 'slidesToShow', 1);
   const layout = getBlockPropValue(block, 'layout', 2) || 'verticle';
   const arrowNavigationVal = getBlockPropValue(block, 'arrowNavigation', 3);
@@ -115,15 +70,9 @@ export default function decorate(block) {
   function createSlide(item, slidesToShowValue) {
     const card = document.createElement('div');
     card.classList.add('cf-carousel-card', layout);
-    // card.style.width = `${100 / slidesToShowValue}%`;
     card.innerHTML = `
       <div class="cf-carousel-card-image">
         <img src="${item.image._publishUrl}" alt="${item.title}" loading="eager" />
-      </div>
-      <div class="cf-carousel-card-body">
-        <h2>${item.title}</h2>
-        <p>${item.description?.plaintext || item.description || ''}</p>
-        ${item.button ? `<button class="cf-carousel-card-btn">${item.button}</button>` : ''}
       </div>
     `;
     return card;
@@ -232,27 +181,12 @@ export default function decorate(block) {
     setCarouselWidth();
   }
 
-  function filterAndRenderByUser() {
-    const user = getCurrentUser();
-    if (user && user.location) {
-      // Filter by user location
-      const filtered = filterItemsByLocation(allItems, user.location);
-      sortedItems = sortItemsByLastModified(filtered);
-    } else {
-      // Show all
-      sortedItems = sortItemsByLastModified(allItems);
-    }
-    renderCarousel(sortedItems);
-    if (arrowNavigation) updateArrowVisibility(0);
-    updatePagination(0);
-  }
-
   (async () => {
     try {
       // Fetch and process data
       const cfItems = await loadContentFragments(cfFolderPath);
       allItems = cfItems;
-      filterAndRenderByUser();
+      renderCarousel(allItems);
 
       // Insert navigation arrows
       if (arrowNavigation) {
@@ -278,18 +212,6 @@ export default function decorate(block) {
         if (arrowNavigation) updateArrowVisibility(page);
         updatePagination(page);
       }, { passive: true });
-
-      // Responsive: re-render on resize
-      window.addEventListener('resize', () => {
-        const newSlidesToShow = getResponsiveSlidesToShow();
-        if (newSlidesToShow !== currentSlidesToShow) {
-          filterAndRenderByUser();
-          if (arrowNavigation) updateArrowVisibility(0);
-          updatePagination(0);
-        } else {
-          setCarouselWidth();
-        }
-      });
 
     } catch (error) {
       console.error('Error loading content fragments or user location:', error);
