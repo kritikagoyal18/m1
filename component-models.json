@@ -5149,6 +5149,12 @@
   },
   {
     "id": "chat-launcher",
-    "fields": []
+    "fields": [
+      {
+        "component": "text",
+        "name": "text",
+        "label": "Chat Launcher Icon"
+      }
+    ]
   }
 ]
