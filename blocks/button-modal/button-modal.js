@@ -10,7 +10,7 @@ export default function decorate(block) {
   button.addEventListener('click', () => {
     console.log('Button was clicked!');
 
-    // Step 3: Create modal overlay and modal panel in memory
+    // Create modal overlay and modal panel in memory
     const overlay = document.createElement('div');
     overlay.className = 'button-modal-overlay';
 
@@ -30,10 +30,14 @@ export default function decorate(block) {
     modal.appendChild(content);
     overlay.appendChild(modal);
 
-    // Log the created elements (not appended to DOM)
-    console.log('Step 3: Created overlay:', overlay);
-    console.log('Step 3: Created modal:', modal);
-    console.log('Step 3: Created closeBtn:', closeBtn);
-    console.log('Step 3: Created content:', content);
+    // Log before appending
+    console.log('Step 4: Body children before append:', Array.from(document.body.children).map(el => el.className || el.tagName));
+
+    // Append overlay to body
+    document.body.appendChild(overlay);
+
+    // Log after appending
+    console.log('Step 4: Body children after append:', Array.from(document.body.children).map(el => el.className || el.tagName));
+    console.log('Step 4: Overlay is now in DOM:', overlay);
   });
 }
