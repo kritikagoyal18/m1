@@ -13,7 +13,7 @@ export default function decorate(block) {
     overlay.className = 'button-modal-overlay';
 
     const modal = document.createElement('div');
-    modal.className = 'button-modal';
+    modal.className = 'button-modal-panel';
 
     const closeBtn = document.createElement('button');
     closeBtn.className = 'button-modal-close';
