@@ -5148,6 +5148,16 @@
     ]
   },
   {
+    "id": "button-modal",
+    "fields": [
+      {
+        "component": "text",
+        "name": "text",
+        "label": "Button Label"
+      }
+    ]
+  },
+  {
     "id": "chat-launcher",
     "fields": [
       {
