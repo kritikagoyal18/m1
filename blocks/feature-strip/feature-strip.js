@@ -1,4 +1,16 @@
 export default function decorate(block) {
+  // Log value from first child div > div
+  const firstChildDiv = block.querySelector('div');
+  if (firstChildDiv) {
+    const innerDiv = firstChildDiv.querySelector('div');
+    if (innerDiv) {
+      const value = innerDiv.textContent.trim();
+      if (value) {
+        console.log('feature-strip value:', value);
+      }
+    }
+  }
+
   // Always add base class
   block.classList.add('feature-strip');
 
