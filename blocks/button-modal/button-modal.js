@@ -22,7 +22,7 @@ export default function decorate(block) {
 
     const content = document.createElement('div');
     content.className = 'button-modal-content';
-    content.innerHTML = '<h2>Modal Title</h2><p>This is the modal content.</p>';
+    content.innerHTML = '<h2>Free registration, SIM card and delivery</h2><ul><li>Worldwide Roaming</li><li>Free Caller Number Display for 3 months for new sign-ups or when you switch to M1</li><li>Free Unlimited Weekend Data for 3 months for new sign-ups or when you switch to M1</li><li>Up to $200 off devices for new sign ups.</li></ul>';
 
     modal.appendChild(closeBtn);
     modal.appendChild(content);
