@@ -71,7 +71,14 @@ export default function decorate(block) {
     card.classList.add('cf-carousel-card', layout);
     card.innerHTML = `
       <div class="cf-carousel-card-image">
-        <img src="${item.image._publishUrl}" alt="${item.title}" loading="eager" />
+        <a href="${item.ctaLink}" target="_blank" rel="noopener noreferrer">
+          <img src="${item.image._publishUrl}" alt="${item.title}" loading="eager" />
+          <h1>${item.title}</h1>
+          <p>${item.pretitle}</p>
+          <a href="${item.ctaLink}" target="_blank" rel="noopener noreferrer" class="carouselButton">
+            ${item.ctaLabel}
+          </a>
+        </a>
       </div>
     `;
     return card;
