@@ -116,6 +116,14 @@
           {
             "name": "Icon Cards",
             "value": "icon-cards"
+          },
+          {
+            "name": "Tile Card",
+            "value": "tile-card"  
+          },
+          {
+            "name": "Shadow Card",
+            "value": "shadow-card"
           }
         ]
       }
