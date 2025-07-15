@@ -5166,5 +5166,20 @@
         "label": "Chat Launcher Icon"
       }
     ]
+  },
+  {
+    "id": "cards",
+    "fields": [
+      {
+        "component": "select",
+        "name": "style",
+        "label": "Style",
+        "options": [
+          { "name": "Image", "value": "image" },
+          { "name": "Icon", "value": "icon" }
+        ],
+        "value": "image"
+      }
+    ]
   }
 ]
