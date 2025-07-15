@@ -5148,6 +5148,21 @@
     ]
   },
   {
+    "id": "cards",
+    "fields": [
+      {
+        "component": "select",
+        "name": "variation",
+        "label": "Variation",
+        "options": [
+          { "name": "Image", "value": "image" },
+          { "name": "Icon", "value": "icon" }
+        ],
+        "value": "image"
+      }
+    ]
+  },
+  {
     "id": "button-modal",
     "fields": [
       {
