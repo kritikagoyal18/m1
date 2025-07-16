@@ -3,7 +3,7 @@ header .nav-wrapper {
   background-color: var(--background-color);
   width: 100%;
   z-index: 2;
-  position: fixed;
+  position: relative;
 }
 
 header nav {
@@ -265,4 +265,28 @@ header nav .nav-sections ul > li > ul > li {
 /* tools */
 header nav .nav-tools {
   grid-area: tools;
+}
+nav#nav {
+  display: block;
+}
+header nav{
+.default-content-wrapper {
+  display: flex;
+}
+
+.default-content-wrapper picture {
+  margin-top: 0.8em;
+  margin-bottom: 0.25em;
+  display: block;
+}
+
+.default-content-wrapper ul {
+  display: flex;
+  list-style: none;
+}
+.default-content-wrapper li {
+  padding: 10px 10px;
+  font-size: 15px;
+  list-style: none;
+}
 }

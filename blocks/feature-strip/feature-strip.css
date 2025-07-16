@@ -30,15 +30,18 @@
 .feature-strip__icon {
   width: 32px;
   height: 32px;
-  margin-bottom: 0.5rem;
   display: block;
 }
 
 .feature-strip__label {
   font-size: 1rem;
-  color: #222;
-  text-align: center;
-  font-weight: 500;
+    color: #222;
+    text-align: center;
+    font-weight: 300;
+    padding: 0;
+    margin: 0;
+    align-self: center;
+    padding-left: 10px;
 }
 
 .feature-strip__item a {
@@ -86,8 +89,11 @@
 
 .feature-strip--grid {
   background: #fff;
-  border: 1px solid #e0e0e0;
   padding: 0;
+  align-items: center;
+  text-align: center;
+  border-top: 1px solid #e0e0e0;
+  border-bottom: 1px solid #e0e0e0;
 }
 
 .feature-strip--grid .feature-strip__features {
@@ -122,6 +128,9 @@
   font-weight: bold;
   color: #222;
   font-size: 1rem;
+  padding: 0;
+    margin: 0;
+    align-self: center;
 }
 
 .feature-strip--strip {
@@ -155,11 +164,53 @@
   filter: grayscale(1) brightness(0); /* makes icon black if SVG allows */
 }
 
-.feature-strip--strip .feature-strip__label {
-  font-weight: normal;
-  color: #222;
-  font-size: 1rem;
-  text-align: left;
-  margin: 0;
-  padding: 0;
+.feature-strip--grid .feature-strip__item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 10px 0;
+    border-right: 1px solid #e0e0e0;
+    width: 152px;
+    min-height: 112px;
+    border-radius: 0;
+}
+.feature-strip--grid {
+    background: #fff;
+    padding: 0;
+    align-items: center;
+    text-align: center;
+    border-top: 1px solid #e0e0e0;
+    border-bottom: 1px solid #e0e0e0;
+}
+.feature-strip--grid .feature-strip__features {
+    display: inline-flex;
+    grid-template-columns: repeat(3, 1fr);
+    align-items: center;
+    text-align: center;
+    border-collapse: collapse;
+    border-left: 1px solid #e0e0e0;
+    border-right: 1px solid #e0e0e0;
+    gap: 0;
+}
+
+.feature-strip--grid .feature-strip__label {
+    font-weight: bold;
+    color: #222;
+    font-size: 0.75rem;
+    padding: 0 5px;
+    margin-top: 0;
+}
+.feature-strip--grid .feature-strip__icon {
+    width: 40px;
+    height: 40px;
+    margin-bottom: 8px;
+}
+.feature-strip-wrapper {
+  max-width: 100% !important;
+  padding: 0 !important;
+}
+.feature-strip__item {
+  display: flex;
+  flex-direction: row;
 }

@@ -12,9 +12,14 @@ footer .footer > div {
 footer .footer p {
   margin: 0;
 }
-
+.footer.block img {
+  width: 100%;
+  aspect-ratio: auto;
+  height: auto;
+}
 @media (width >= 900px) {
   footer .footer > div {
-    padding: 40px 32px 24px;
+       padding: 0;
+        max-width: none;
   }
 }
