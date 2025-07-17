@@ -380,7 +380,7 @@ button.cf-carousel-arrow{
     }
 
     .carouselButton {
-          top: 52%;
+             top: 57%;
             left: 1rem;
             padding: 0.8rem 2rem;
             background: #ff9e1b;
@@ -390,7 +390,7 @@ button.cf-carousel-arrow{
             border-radius: 40px;
             font-size: 16px;
             font-weight: 500;
-            margin-left: 22px;
+            margin-left: 20px;
     }
   }
 }

@@ -267,3 +267,6 @@ main .section.highlight {
 h1 {
   text-align: center;
 }
+.default-content-wrapper p{
+  text-align: center;
+}
