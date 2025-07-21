@@ -173,7 +173,6 @@ main .cf-carousel-wrapper > .cf-carousel-arrow,
   display: flex;
   align-items: center;
   justify-content: center;
-  background: #f5f7fa;
 }
 
 .cf-carousel-card-image img {

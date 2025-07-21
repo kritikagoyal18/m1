@@ -49,7 +49,7 @@ export default function decorate(block) {
   // Default values
   const slidesToShow = slidesToShowVal ? parseInt(slidesToShowVal, 10) : 3;
   const arrowNavigation = arrowNavigationVal?.toLowerCase() === 'true' || true;
-  const autoRotate = autoRotateVal?.toLowerCase() === 'true' || true;
+  const autoRotate = true;
 
   if (!cfFolderPath) return;
 
@@ -132,6 +132,7 @@ export default function decorate(block) {
   let currentPage = 0;
   let totalPages = 1;
   let scrollTarget = null;
+  let autoRotateInterval = null;
 
   function scrollToPage(page) {
     scrollTarget = block.clientWidth * page;
@@ -142,6 +143,12 @@ export default function decorate(block) {
     currentPage = page;
     updateArrowVisibility(page);
     updatePagination(page);
+    
+    // Reset auto-rotate timer when manually navigating
+    if (autoRotate && autoRotateInterval) {
+      clearInterval(autoRotateInterval);
+      startAutoRotate();
+    }
   }
 
   function updateArrowVisibility(page) {
@@ -165,6 +172,23 @@ export default function decorate(block) {
       scrollToPage(currentPage + 1);
     }
   });
+
+  // Auto-rotate functionality
+  function startAutoRotate() {
+    if (!autoRotate || totalPages <= 1) return;
+    
+    autoRotateInterval = setInterval(() => {
+      const nextPage = (currentPage + 1) % totalPages;
+      scrollToPage(nextPage);
+    }, 3000); // 3 seconds
+  }
+
+  function stopAutoRotate() {
+    if (autoRotateInterval) {
+      clearInterval(autoRotateInterval);
+      autoRotateInterval = null;
+    }
+  }
 
   function renderCarousel(itemsToRender) {
     block.replaceChildren();
@@ -195,6 +219,11 @@ export default function decorate(block) {
       if (customStyle) block.classList.add(customStyle);
       if (arrowNavigation) updateArrowVisibility(0);
       updatePagination(0);
+      
+      // Start auto-rotation if enabled
+      if (autoRotate) {
+        startAutoRotate();
+      }
 
       block.addEventListener('scroll', () => {
         if (scrollTarget !== null) {
@@ -210,6 +239,19 @@ export default function decorate(block) {
         if (arrowNavigation) updateArrowVisibility(page);
         updatePagination(page);
       }, { passive: true });
+
+      // Pause auto-rotation on hover
+      block.addEventListener('mouseenter', () => {
+        if (autoRotate) {
+          stopAutoRotate();
+        }
+      });
+
+      block.addEventListener('mouseleave', () => {
+        if (autoRotate) {
+          startAutoRotate();
+        }
+      });
 
     } catch (error) {
       console.error('Error loading content fragments or user location:', error);
